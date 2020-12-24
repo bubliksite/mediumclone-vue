@@ -48,6 +48,7 @@
   import {limit} from '@/helpers/vars'
   import {mapState} from 'vuex'
   import AppPagination from '@/components/Pagination'
+  import {stringify, parseUrl} from 'query-string'
 
   export default {
     name: 'AppFeed',
@@ -73,18 +74,34 @@
       },
       baseUrl() {
         return this.$route.path
-      }
+      },
+      offset() {
+        return this.currentPage * limit - limit
+      },
     },
     watch: {
       currentPage() {
-
+        this.fetchFeed()
       }
     },
     components: {
       AppPagination
     },
     mounted() {
-      this.$store.dispatch(actionTypes.getFeed, {apiUrl: this.apiUrl})
+      this.fetchFeed()
+    },
+    methods: {
+      fetchFeed() {
+        const parsedUrl = parseUrl(this.apiUrl)
+        const stringifyParams = stringify({
+          limit,
+          offset: this.offset,
+          ...parsedUrl.query
+        })
+        const apiUrlWithParams = `${parsedUrl.url}?${stringifyParams}`
+        console.log(apiUrlWithParams)
+        this.$store.dispatch(actionTypes.getFeed, {apiUrl: apiUrlWithParams})
+      }
     },
   }
 </script>
