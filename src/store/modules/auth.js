@@ -10,19 +10,19 @@ export const mutationTypes = {
   loginFailed: '[auth] loginFailed',
   getCurrentUserStart: '[auth] getCurrentUserStart',
   getCurrentUserSuccess: '[auth] getCurrentUserSuccess',
-  getCurrentUserFailed: '[auth] getCurrentUserFailed',
+  getCurrentUserFailed: '[auth] getCurrentUserFailed'
 }
 
 export const actionTypes = {
   register: '[auth] register',
   login: '[auth] login',
-  getCurrentUser: '[auth] getCurrentUser',
+  getCurrentUser: '[auth] getCurrentUser'
 }
 
 export const getterTypes = {
   currentUser: '[auth] currentUser',
   isLoggedIn: '[auth] isLoggedIn',
-  isAnonymous: '[auth] isAnonymous',
+  isAnonymous: '[auth] isAnonymous'
 }
 
 export default {
@@ -31,7 +31,7 @@ export default {
     isSubmitting: false,
     currentUser: null,
     validationErrors: null,
-    isLoggedIn: null,
+    isLoggedIn: null
   },
   mutations: {
     [mutationTypes.registerStart](state) {
@@ -72,7 +72,7 @@ export default {
       state.isLoading = false
       state.isLoggedIn = false
       state.currentUser = null
-    },
+    }
   },
   actions: {
     [actionTypes.register](context, credentials) {
@@ -127,7 +127,7 @@ export default {
             context.commit(mutationTypes.getCurrentUserFailed)
           })
       })
-    },
+    }
   },
   getters: {
     [getterTypes.currentUser]: (state) => {
@@ -138,6 +138,6 @@ export default {
     },
     [getterTypes.isAnonymous]: (state) => {
       return state.isLoggedIn === false
-    },
-  },
+    }
+  }
 }

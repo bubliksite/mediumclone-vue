@@ -12,8 +12,8 @@
     props: {
       validationErrors: {
         type: Object,
-        required: true,
-      },
+        required: true
+      }
     },
     computed: {
       errorMessages() {
@@ -21,7 +21,7 @@
           const messages = this.validationErrors[name].join(', ')
           return `${name} ${messages}`
         })
-      },
-    },
+      }
+    }
   }
 </script>

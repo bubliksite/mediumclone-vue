@@ -77,8 +77,8 @@
       ...mapGetters({
         currentUser: getterTypes.currentUser,
         isLoggedIn: getterTypes.isLoggedIn,
-        isAnonymous: getterTypes.isAnonymous,
-      }),
-    },
+        isAnonymous: getterTypes.isAnonymous
+      })
+    }
   }
 </script>

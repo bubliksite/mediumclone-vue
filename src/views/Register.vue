@@ -62,14 +62,14 @@
       return {
         email: '',
         username: '',
-        password: '',
+        password: ''
       }
     },
     computed: {
       ...mapState({
         isSubmitting: (state) => state.auth.isSubmitting,
-        validationErrors: (state) => state.auth.validationErrors,
-      }),
+        validationErrors: (state) => state.auth.validationErrors
+      })
     },
     methods: {
       onSubmit() {
@@ -77,12 +77,12 @@
           .dispatch(actionTypes.register, {
             email: this.email,
             username: this.username,
-            password: this.password,
+            password: this.password
           })
           .then(() => {
             this.$router.push({name: 'globalFeed'})
           })
-      },
-    },
+      }
+    }
   }
 </script>

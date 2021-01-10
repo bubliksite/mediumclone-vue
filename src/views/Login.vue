@@ -54,26 +54,26 @@
     data() {
       return {
         email: '',
-        password: '',
+        password: ''
       }
     },
     computed: {
       ...mapState({
         isSubmitting: (state) => state.auth.isSubmitting,
-        validationErrors: (state) => state.auth.validationErrors,
-      }),
+        validationErrors: (state) => state.auth.validationErrors
+      })
     },
     methods: {
       onSubmit() {
         this.$store
           .dispatch(actionTypes.login, {
             email: this.email,
-            password: this.password,
+            password: this.password
           })
           .then(() => {
             this.$router.push({name: 'globalFeed'})
           })
-      },
-    },
+      }
+    }
   }
 </script>

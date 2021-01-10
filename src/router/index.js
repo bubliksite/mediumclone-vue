@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import GlobalFeed from '../views/GlobalFeed'
 import Register from '@/views/Register'
 import Login from '@/views/Login'
+import YourFeed from '@/views/YourFeed'
+import TagFeed from '@/views/TagFeed'
 
 Vue.use(VueRouter)
 
@@ -10,63 +12,63 @@ const routes = [
   {
     path: '/register',
     name: 'register',
-    component: Register,
+    component: Register
   },
   {
     path: '/login',
     name: 'login',
-    component: Login,
+    component: Login
   },
   {
     path: '/',
     name: 'globalFeed',
-    component: GlobalFeed,
+    component: GlobalFeed
   },
   {
     path: '/feed',
     name: 'yourFeed',
-    component: GlobalFeed,
+    component: YourFeed
   },
   {
     path: '/tags/:slug',
     name: 'tag',
-    component: GlobalFeed,
+    component: TagFeed
   },
   {
     path: '/articles/new',
     name: 'createArticle',
-    component: GlobalFeed,
+    component: GlobalFeed
   },
   {
     path: '/articles/edit',
     name: 'editArticle',
-    component: GlobalFeed,
+    component: GlobalFeed
   },
   {
     path: '/articles/:slug',
     name: 'article',
-    component: GlobalFeed,
+    component: GlobalFeed
   },
   {
     path: '/settings',
     name: 'settings',
-    component: GlobalFeed,
+    component: GlobalFeed
   },
   {
     path: '/profiles/:slug',
     name: 'userProfile',
-    component: GlobalFeed,
+    component: GlobalFeed
   },
   {
     path: '/profiles/:slug/favorites',
     name: 'userProfileFavorites',
-    component: GlobalFeed,
-  },
+    component: GlobalFeed
+  }
 ]
 
 const router = new VueRouter({
   routes,
-  mode: 'history',
+  mode: 'history'
 })
 
 export default router

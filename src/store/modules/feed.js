@@ -3,18 +3,18 @@ import feedApi from '@/api/feed'
 export const mutationTypes = {
   getFeedStart: '[feed] getFeedStart',
   getFeedSuccess: '[feed] getFeedSuccess',
-  getFeedFailed: '[feed] getFeedFailed',
+  getFeedFailed: '[feed] getFeedFailed'
 }
 
 export const actionTypes = {
-  getFeed: '[feed] getFeed',
+  getFeed: '[feed] getFeed'
 }
 
 export default {
   state: {
     data: null,
     isLoading: false,
-    error: null,
+    error: null
   },
   mutations: {
     [mutationTypes.getFeedStart](state) {
@@ -28,7 +28,7 @@ export default {
     [mutationTypes.getFeedFailed](state, payload) {
       state.isLoading = false
       state.error = payload
-    },
+    }
   },
   actions: {
     [actionTypes.getFeed](context, {apiUrl}) {
@@ -44,6 +44,6 @@ export default {
             context.commit(mutationTypes.getFeedFailed)
           })
       })
-    },
-  },
+    }
+  }
 }

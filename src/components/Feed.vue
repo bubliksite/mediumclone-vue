@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading...</div>
-    <div v-if="error">Something wrong</div>
+    <app-loading v-if="isLoading" />
+    <app-error-message v-if="error" :message="error" />
     <div v-if="feed">
       <div
         class="article-preview"
@@ -19,7 +19,7 @@
               class="author"
               :to="{
                 name: 'userProfile',
-                params: {slug: article.author.username},
+                params: {slug: article.author.username}
               }"
             >
               {{ article.author.username }}
@@ -38,7 +38,12 @@
           TAGLIST
         </router-link>
       </div>
-      <app-pagination :total="feed.articlesCount" :limit="limit" :current-page="currentPage" :url="baseUrl" />
+      <app-pagination
+        :total="feed.articlesCount"
+        :limit="limit"
+        :current-page="currentPage"
+        :url="baseUrl"
+      />
     </div>
   </div>
 </template>
@@ -49,14 +54,16 @@
   import {mapState} from 'vuex'
   import AppPagination from '@/components/Pagination'
   import {stringify, parseUrl} from 'query-string'
+  import AppLoading from '@/components/Loading'
+  import AppErrorMessage from '@/components/ErrorMessage'
 
   export default {
     name: 'AppFeed',
     props: {
       apiUrl: {
         type: String,
-        required: true,
-      },
+        required: true
+      }
     },
     data() {
       return {
@@ -67,7 +74,7 @@
       ...mapState({
         isLoading: (state) => state.feed.isLoading,
         feed: (state) => state.feed.data,
-        error: (state) => state.feed.error,
+        error: (state) => state.feed.error
       }),
       currentPage() {
         return Number(this.$route.query.page || '1')
@@ -77,7 +84,7 @@
       },
       offset() {
         return this.currentPage * limit - limit
-      },
+      }
     },
     watch: {
       currentPage() {
@@ -85,6 +92,8 @@
       }
     },
     components: {
+      AppErrorMessage,
+      AppLoading,
       AppPagination
     },
     mounted() {
@@ -102,6 +111,6 @@
         console.log(apiUrlWithParams)
         this.$store.dispatch(actionTypes.getFeed, {apiUrl: apiUrlWithParams})
       }
-    },
+    }
   }
 </script>

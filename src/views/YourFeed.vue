@@ -21,7 +21,7 @@
   import AppBanner from '@/components/Banner'
   import AppFeedToggler from '@/components/FeedToggler'
   export default {
-    name: 'AppGlobalFeed',
+    name: 'AppYourFeed',
     components: {
       AppFeedToggler,
       AppBanner,
@@ -30,8 +30,7 @@
     },
     data() {
       return {
-        apiUrl: '/articles',
-        apiUrlTags: '/tags'
+        apiUrl: '/articles/feed'
       }
     }
   }
