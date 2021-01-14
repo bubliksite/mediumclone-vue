@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import GlobalFeed from '../views/GlobalFeed'
+import GlobalFeed from '@/views/GlobalFeed'
 import Register from '@/views/Register'
 import Login from '@/views/Login'
 import YourFeed from '@/views/YourFeed'
 import TagFeed from '@/views/TagFeed'
+import Article from '@/views/Article'
+import CreateArticle from '@/views/CreateArticle'
+import EditArticle from '@/views/EditArticle'
+import Settings from '@/views/Settings'
+import UserProfile from '@/views/UserProfile'
 
 Vue.use(VueRouter)
 
@@ -37,32 +42,32 @@ const routes = [
   {
     path: '/articles/new',
     name: 'createArticle',
-    component: GlobalFeed
+    component: CreateArticle
   },
   {
-    path: '/articles/edit',
+    path: '/articles/:slug/edit',
     name: 'editArticle',
-    component: GlobalFeed
+    component: EditArticle
   },
   {
     path: '/articles/:slug',
     name: 'article',
-    component: GlobalFeed
+    component: Article
   },
   {
     path: '/settings',
     name: 'settings',
-    component: GlobalFeed
+    component: Settings
   },
   {
     path: '/profiles/:slug',
     name: 'userProfile',
-    component: GlobalFeed
+    component: UserProfile
   },
   {
     path: '/profiles/:slug/favorites',
     name: 'userProfileFavorites',
-    component: GlobalFeed
+    component: UserProfile
   }
 ]
 

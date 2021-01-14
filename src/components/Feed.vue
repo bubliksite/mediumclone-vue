@@ -26,7 +26,13 @@
             </router-link>
             <span class="date">{{ article.createdAt }}</span>
           </div>
-          <div class="pull-xs-right">ADD TO FAVORITES</div>
+          <div class="pull-xs-right">
+            <app-add-to-favorites
+              :isFavorited="article.favorited"
+              :articleSlug="article.slug"
+              :favoritesCount="article.favoritesCount"
+            />
+          </div>
         </div>
         <router-link
           :to="{name: 'article', params: {slug: article.slug}}"
@@ -35,7 +41,7 @@
           <h1>{{ article.title }}</h1>
           <p>{{ article.description }}</p>
           <span>Read more...</span>
-          TAGLIST
+          <app-taglist :tags="article.tagList" />
         </router-link>
       </div>
       <app-pagination
@@ -56,6 +62,8 @@
   import {stringify, parseUrl} from 'query-string'
   import AppLoading from '@/components/Loading'
   import AppErrorMessage from '@/components/ErrorMessage'
+  import AppTaglist from './Taglist'
+  import AppAddToFavorites from '@/components/AddToFavorites'
 
   export default {
     name: 'AppFeed',
@@ -76,6 +84,9 @@
         feed: (state) => state.feed.data,
         error: (state) => state.feed.error
       }),
+      currentTag() {
+        return String(this.$route.params.slug || '')
+      },
       currentPage() {
         return Number(this.$route.query.page || '1')
       },
@@ -89,9 +100,17 @@
     watch: {
       currentPage() {
         this.fetchFeed()
+      },
+      currentTag() {
+        this.fetchFeed()
+      },
+      apiUrl() {
+        this.fetchFeed()
       }
     },
     components: {
+      AppAddToFavorites,
+      AppTaglist,
       AppErrorMessage,
       AppLoading,
       AppPagination
